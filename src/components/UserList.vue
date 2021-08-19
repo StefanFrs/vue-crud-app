@@ -5,16 +5,20 @@
                 <thead>
                     <tr>
                         <th>Name</th>
+                        <th>Last name</th>
                         <th>Email</th>
-                        <th>Phone</th>
+                        <th>Gender</th>
+                        <th>Birth date</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="user in Users" :key="user.key">
                         <td>{{ user.name }}</td>
+                        <td>{{ user.Lname }}</td>
                         <td>{{ user.email }}</td>
-                        <td>{{ user.phone }}</td>
+                        <td>{{ user.gender }}</td>
+                        <td>{{ user.date }}</td>
                         <td>
                             <router-link :to="{name: 'edit', params: { id: user.key }}" class="btn btn-primary">Edit
                             </router-link>
@@ -43,8 +47,11 @@
                     this.Users.push({
                         key: doc.id,
                         name: doc.data().name,
+                        Lname: doc.data().Lname,
                         email: doc.data().email,
-                        phone: doc.data().phone
+                        gender: doc.data().gender,
+                        date: doc.data().date
+                    
                     })
                 });
             })
