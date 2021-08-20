@@ -36,7 +36,7 @@
                     <label class="form-label text-center uno" id="input-image" for="customFile">
                         Image profile
                     </label>
-                    <input type="file" class="input-form" id="customFile" multiple/>
+                    <input type="file" class="input-form" id="image" accept="image/" @change="ImageFileAsURL()" multiple/>
                 </div>
 
                 <div class="form-group">
@@ -67,13 +67,28 @@
                     this.user.email = ''
                     this.user.gender = ''
                     this.user.date = ''
+                    this.user.image = ''
                   
                 }).catch((error) => {
                     console.log(error);
                 });
-            }
-
-            
+            },
+        ImageFileAsURL(){
+            const file = document.querySelector("input[type=file]").files[0];
+            const reader = new FileReader();
+            var that = this;
+            reader.addEventListener(
+                "load",
+                function(){
+                    that.user.image = reader.result;
+                },
+                false
+            );
+        
+        if (file){
+            reader.readAsDataURL(file);
+        }
+        }
         }
     }
 </script>

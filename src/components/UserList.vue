@@ -2,9 +2,10 @@
 <div class="row">
     <div class="col-md-12">
         <table class="table table-striped table-dark">
-            <thead>
+            <thead slot="head">
                 <tr>
-                    <th >Name</th>
+                    <th>Picture </th>
+                    <th>Name</th>
                     <th>Last name</th>
                     <th>Email</th>
                     <th>Gender</th>
@@ -14,6 +15,7 @@
             </thead>
             <tbody>
                 <tr v-for="user in Users" :key="user.key">
+                    <td><img v-bind:src="user.image" class="imagine"/></td>
                     <td>{{ user.name }}</td>
                     <td>{{ user.Lname }}</td>
                     <td>{{ user.email }}</td>
@@ -39,11 +41,7 @@ import {
 export default {
     data() {
         return {
-            Users: [],
-            sortKey: '',
-            search:'',
-            reverse: false,
-            columns: ['name', 'email', 'gender']
+            Users: []
         }
     },
     created() {
@@ -56,7 +54,8 @@ export default {
                     Lname: doc.data().Lname,
                     email: doc.data().email,
                     gender: doc.data().gender,
-                    date: doc.data().date
+                    date: doc.data().date,
+                    image: doc.data().image
 
                 })
             });
@@ -72,7 +71,7 @@ export default {
                         console.error(error);
                     })
             }
-        }
+        },
     },
 }
 </script>
@@ -85,4 +84,9 @@ export default {
 th {
     cursor: pointer;
 }
+.imagine{
+   width: 70px;
+   border-radius: 20px;
+}
+
 </style>
