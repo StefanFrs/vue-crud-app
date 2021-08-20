@@ -85,8 +85,14 @@ th {
     cursor: pointer;
 }
 .imagine{
-   width: 70px;
+   width: 50px;
    border-radius: 20px;
 }
 
+td,th{
+    text-align:center;
+}
+.table td,tr{
+     vertical-align: middle;
+}
 </style>
